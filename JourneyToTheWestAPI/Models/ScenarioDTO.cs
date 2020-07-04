@@ -19,9 +19,9 @@ namespace JourneyToTheWestAPI.Models
         [JsonProperty("Location")]
         public String Location { get; set; }
         [JsonProperty("StartDate")]
-        public DateTime StartDate { get; set; }
+        public String StartDate { get; set; }
         [JsonProperty("EndDate")]
-        public DateTime EndDate { get; set; }
+        public String EndDate { get; set; }
         [JsonProperty("TimeRecord")]
         public int TimeRecord { get; set; }
 

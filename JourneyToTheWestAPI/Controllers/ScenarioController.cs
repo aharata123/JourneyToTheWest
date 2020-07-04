@@ -41,10 +41,11 @@ namespace JourneyToTheWestAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromForm] ScenarioDTO dto)
         {
+            Console.WriteLine(dto);
             int id = dao.createScenario(dto);
             if(id == (int)Constants.FAIL)
             {
-                return BadRequest();
+                
             }
             return StatusCode(201);
         }
