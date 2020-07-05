@@ -65,9 +65,10 @@ namespace JourneyToTheWestAPI.Controllers
 
         // DELETE api/<ScenarioController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
-            if (dao.deleteScenario(id))
+
+            if (dao.deleteScenario(int.Parse(id)))
             {
                 return StatusCode(200);
             } else
