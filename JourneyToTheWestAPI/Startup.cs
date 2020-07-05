@@ -37,6 +37,7 @@ namespace JourneyToTheWestAPI
             // Dependency injection
 
             services.AddScoped<ScenarioDAO, ScenarioDAO>();
+            services.AddScoped<ActorDAO, ActorDAO>();
 
             // Auto Mapper
             services.AddAutoMapper(typeof(Startup));

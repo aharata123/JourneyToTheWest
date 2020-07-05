@@ -41,6 +41,10 @@ namespace JourneyToTheWestAPI.Entities
 
                 entity.ToTable("Actor");
 
+                entity.HasIndex(e => e.Username)
+                    .HasName("IX_Actor")
+                    .IsUnique();
+
                 entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.Email)
@@ -60,6 +64,8 @@ namespace JourneyToTheWestAPI.Entities
                     .HasColumnName("password")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Username)
                     .IsRequired()

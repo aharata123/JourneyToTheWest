@@ -34,6 +34,10 @@ namespace JourneyToTheWestAPI.Ultils
                 opt => opt.MapFrom(src => src.EndDate.ToString("o"))
                 );
 
+
+            CreateMap<Actor, ActorDTO>();
+            CreateMap<ActorDTO, Actor>();
+
         }
     }
 
