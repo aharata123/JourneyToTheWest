@@ -17,7 +17,7 @@ namespace JourneyToTheWestAPI.Models
         [JsonProperty("Description")]
         public String Description { get; set; }
         [JsonProperty("PhoneNumber")]
-        public decimal PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
         [JsonProperty("Email")]
         public String Email { get; set; }
         [JsonProperty("password")]
