@@ -65,6 +65,10 @@ namespace JourneyToTheWestAPI.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Username)
