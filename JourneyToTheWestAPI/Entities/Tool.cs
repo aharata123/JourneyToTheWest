@@ -16,6 +16,7 @@ namespace JourneyToTheWestAPI.Entities
         public string Image { get; set; }
         public int Quantity { get; set; }
         public int Status { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public virtual ICollection<ToolsInScenario> ToolsInScenarios { get; set; }
     }

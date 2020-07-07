@@ -151,6 +151,8 @@ namespace JourneyToTheWestAPI.Entities
 
                 entity.ToTable("Tool");
 
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
                 entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.Image)

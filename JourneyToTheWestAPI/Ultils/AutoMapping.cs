@@ -38,6 +38,16 @@ namespace JourneyToTheWestAPI.Ultils
             CreateMap<Actor, ActorDTO>();
             CreateMap<ActorDTO, Actor>();
 
+            CreateMap<Tool, ToolDTO>().ForMember(
+                dest => dest.DateCreated,
+                opt => opt.MapFrom(src => src.DateCreated.ToString("o"))
+                );
+
+            CreateMap<ToolDTO, Tool>().ForMember(
+                dest => dest.DateCreated,
+                opt => opt.MapFrom(src => src.DateCreated.ToString("o"))
+                );
+
         }
     }
 

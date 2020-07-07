@@ -38,6 +38,7 @@ namespace JourneyToTheWestAPI
 
             services.AddScoped<ScenarioDAO, ScenarioDAO>();
             services.AddScoped<ActorDAO, ActorDAO>();
+            services.AddScoped<ToolDAO, ToolDAO>();
 
             // Auto Mapper
             services.AddAutoMapper(typeof(Startup));
