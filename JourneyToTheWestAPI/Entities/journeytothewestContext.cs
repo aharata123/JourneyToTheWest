@@ -69,6 +69,8 @@ namespace JourneyToTheWestAPI.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Role).HasColumnName("role");
+
                 entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Username)

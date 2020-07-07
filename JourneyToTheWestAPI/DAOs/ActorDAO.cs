@@ -46,6 +46,7 @@ namespace JourneyToTheWestAPI.DAOs
 
             Actor actor = _mapper.Map<Actor>(dto);
             actor.Status = (int)Status.ACTIVE;
+            actor.Role = (int)Constants.ACTOR;
             _context.Actors.Add(actor);
             if (_context.SaveChanges() == (int)Constants.SUCCESS)
             {
@@ -66,6 +67,7 @@ namespace JourneyToTheWestAPI.DAOs
                 _context.Entry(actor).State = EntityState.Detached;
                 actor = _mapper.Map<Actor>(dto);
                 actor.Status = (int)Status.ACTIVE;
+                actor.Role = (int)Constants.ACTOR;
                 _context.Entry(actor).State = EntityState.Modified;
                 if (_context.SaveChanges() == (int)Constants.SUCCESS)
                 {

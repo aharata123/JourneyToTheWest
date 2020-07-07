@@ -9,5 +9,7 @@ namespace JourneyToTheWestAPI.Enums
     {
         SUCCESS = 1,
         FAIL = -1,
+        ADMIN = 1,
+        ACTOR = 2,
     }
 }
