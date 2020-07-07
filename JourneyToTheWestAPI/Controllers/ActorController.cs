@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JourneyToTheWestAPI.DAOs;
+using JourneyToTheWestAPI.Entities;
 using JourneyToTheWestAPI.Enums;
 using JourneyToTheWestAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,9 @@ namespace JourneyToTheWestAPI.Controllers
             this.dao = dao;
         }
         // GET: api/<ScenarioController>
+
+
+
         [HttpGet]
         public IEnumerable<ActorDTO> Get()
         {
@@ -84,6 +88,17 @@ namespace JourneyToTheWestAPI.Controllers
                 return StatusCode(400);
             }
 
+        }
+
+        [HttpPost("login")]
+        public ActionResult<ActorDTO> Post([FromForm] LoginDTO dto)
+        {
+            ActorDTO actor = dao.login(dto.username, dto.password);
+            if (actor == null)
+            {
+                return StatusCode(404);
+            }
+            return actor;
         }
 
     }

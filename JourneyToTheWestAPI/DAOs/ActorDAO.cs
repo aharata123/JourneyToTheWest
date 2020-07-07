@@ -97,5 +97,15 @@ namespace JourneyToTheWestAPI.DAOs
             return isDeleted;
         }
 
+
+        public ActorDTO login(String username, String password) {
+
+            var actor = (from ac in _context.Actors
+                         where ac.Username == username && ac.Password == password && ac.Status == (int)Status.ACTIVE
+                         select _mapper.Map<ActorDTO>(ac)).FirstOrDefault();
+            return actor;
+
+        }
+
     }
 }
