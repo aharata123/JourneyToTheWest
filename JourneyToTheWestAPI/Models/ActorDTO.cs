@@ -24,6 +24,8 @@ namespace JourneyToTheWestAPI.Models
         public String password { get; set; }
         [JsonProperty("username")]
         public String username { get; set; }
+        [JsonProperty("role")]
+        public int role { get; set; }
 
     }
 }

@@ -94,6 +94,8 @@ namespace JourneyToTheWestAPI.Controllers
         public ActionResult<ActorDTO> Post([FromForm] LoginDTO dto)
         {
             ActorDTO actor = dao.login(dto.username, dto.password);
+            
+            
             if (actor == null)
             {
                 return StatusCode(404);
