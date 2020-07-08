@@ -134,6 +134,11 @@ namespace JourneyToTheWestAPI.Entities
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
+                entity.Property(e => e.FileUrl)
+                    .IsRequired()
+                    .HasColumnName("fileURL")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Location)
                     .IsRequired()
                     .HasMaxLength(255);

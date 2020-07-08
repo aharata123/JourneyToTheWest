@@ -19,6 +19,7 @@ namespace JourneyToTheWestAPI.Entities
         public DateTime EndDate { get; set; }
         public int TimeRecord { get; set; }
         public int? Status { get; set; }
+        public string FileUrl { get; set; }
 
         public virtual ICollection<RolesInScenario> RolesInScenarios { get; set; }
         public virtual ICollection<ToolsInScenario> ToolsInScenarios { get; set; }

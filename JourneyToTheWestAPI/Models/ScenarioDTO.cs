@@ -24,6 +24,8 @@ namespace JourneyToTheWestAPI.Models
         public String EndDate { get; set; }
         [JsonProperty("TimeRecord")]
         public int TimeRecord { get; set; }
+        [JsonProperty("FileURL")]
+        public String FileURl { get; set; }
 
     }
 }
