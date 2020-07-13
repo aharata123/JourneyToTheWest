@@ -48,6 +48,16 @@ namespace JourneyToTheWestAPI.Ultils
                 opt => opt.MapFrom(src => src.DateCreated.ToString("o"))
                 );
 
+            CreateMap<RolesInScenario, RoleInScenarioDTO>().ForMember(
+                dest => dest.NameActor,
+                opt => opt.MapFrom(src => src.IdActorNavigation.Name)
+                ).
+                ForMember(
+                 dest => dest.Image,
+                opt => opt.MapFrom(src => src.IdActorNavigation.Image)
+                );
+                   
+                
         }
     }
 

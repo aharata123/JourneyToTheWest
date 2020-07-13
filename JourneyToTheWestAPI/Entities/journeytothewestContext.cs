@@ -16,7 +16,6 @@ namespace JourneyToTheWestAPI.Entities
         }
 
         public virtual DbSet<Actor> Actors { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RolesInScenario> RolesInScenarios { get; set; }
         public virtual DbSet<Scenario> Scenarios { get; set; }
         public virtual DbSet<Tool> Tools { get; set; }
@@ -80,42 +79,21 @@ namespace JourneyToTheWestAPI.Entities
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.HasKey(e => e.IdRole);
-
-                entity.ToTable("Role");
-
-                entity.Property(e => e.Description).IsRequired();
-
-                entity.Property(e => e.RoleName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.HasOne(d => d.IdActorNavigation)
-                    .WithMany(p => p.Roles)
-                    .HasForeignKey(d => d.IdActor)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Role_Actor1");
-            });
-
             modelBuilder.Entity<RolesInScenario>(entity =>
             {
-                entity.HasKey(e => new { e.IdScenario, e.IdRole });
+                entity.HasKey(e => new { e.IdScenario, e.RoleName, e.IdActor });
 
                 entity.ToTable("RolesInScenario");
 
-                entity.HasOne(d => d.ActorNavigation)
+                entity.Property(e => e.RoleName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdActorNavigation)
                     .WithMany(p => p.RolesInScenarios)
-                    .HasForeignKey(d => d.Actor)
+                    .HasForeignKey(d => d.IdActor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RolesInScenario_Actor");
-
-                entity.HasOne(d => d.IdRoleNavigation)
-                    .WithMany(p => p.RolesInScenarios)
-                    .HasForeignKey(d => d.IdRole)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RolesInScenario_Role");
 
                 entity.HasOne(d => d.IdScenarioNavigation)
                     .WithMany(p => p.RolesInScenarios)
