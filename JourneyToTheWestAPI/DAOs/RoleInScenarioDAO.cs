@@ -26,6 +26,10 @@ namespace JourneyToTheWestAPI.DAOs
                            select 
                                _mapper.Map<RoleInScenarioDTO>(data)
                                ).ToList();
+            if(allRole.Count == 0)
+            {
+                allRole = null;
+            }
 
             return allRole;
         }
