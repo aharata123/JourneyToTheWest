@@ -33,5 +33,58 @@ namespace JourneyToTheWestAPI.DAOs
 
             return allRole;
         }
+
+        public bool addRoleToScenario(List<RoleScenarioDTO> dto)
+        {
+            bool isAdd = false;
+
+            foreach(var item in dto)
+            {
+                RolesInScenario roles = _mapper.Map<RolesInScenario>(item);
+                try
+                {
+                    _context.RolesInScenarios.Add(roles);
+                } catch (Exception e)
+                {
+                    // check trùng key
+                    return false;
+                }
+                
+            }
+                
+            if (_context.SaveChanges() == dto.Count)
+            {
+                isAdd = true;
+            }
+
+            return isAdd;
+        }
+
+        public bool deleteRoleToScenario(List<RoleScenarioDTO> dto)
+        {
+            bool isDelete = false;
+
+            foreach (var item in dto)
+            {
+                RolesInScenario roles = _mapper.Map<RolesInScenario>(item);
+                try
+                {
+                    _context.RolesInScenarios.Remove(roles);
+                }
+                catch (Exception e)
+                {
+                    // check trùng key
+                    return false;
+                }
+
+            }
+
+            if (_context.SaveChanges() == dto.Count)
+            {
+                isDelete = true;
+            }
+
+            return isDelete;
+        }
     }
 }

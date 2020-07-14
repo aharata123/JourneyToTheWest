@@ -66,7 +66,8 @@ namespace JourneyToTheWestAPI.Ultils
                  dest => dest.Image,
                 opt => opt.MapFrom(src => src.IdActorNavigation.Image)
                 );
-                   
+
+            CreateMap<RoleScenarioDTO, RolesInScenario>();
                 
         }
     }

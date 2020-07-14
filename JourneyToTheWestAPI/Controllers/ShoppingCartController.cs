@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JourneyToTheWestAPI.DAOs;
+using JourneyToTheWestAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace JourneyToTheWestAPI.Controllers
 {
@@ -30,6 +32,33 @@ namespace JourneyToTheWestAPI.Controllers
             }
             else return StatusCode(200, data);
         }
+
+        [HttpPost("roles")]
+        public ActionResult Post([FromBody] List<RoleScenarioDTO> list)
+        {
+
+            bool isAdd = dao.addRoleToScenario(list);
+
+            if (!isAdd)
+            {
+                return StatusCode(400);
+            }
+            else return StatusCode(204);
+        }
+
+        [HttpDelete("roles")]
+        public ActionResult Delete([FromBody] List<RoleScenarioDTO> list)
+        {
+
+            bool isDelete = dao.deleteRoleToScenario(list);
+
+            if (!isDelete)
+            {
+                return StatusCode(400);
+            }
+            else return StatusCode(204);
+        }
+
 
 
 
