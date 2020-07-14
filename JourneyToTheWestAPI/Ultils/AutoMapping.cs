@@ -29,14 +29,24 @@ namespace JourneyToTheWestAPI.Ultils
                 .ForMember(
                 dest => dest.StartDate,
                 opt => opt.MapFrom(src => src.StartDate.ToString("o"))
-                ).ForMember(
+                )
+                .ForMember(
                 dest => dest.EndDate,
                 opt => opt.MapFrom(src => src.EndDate.ToString("o"))
                 );
 
 
-            CreateMap<Actor, ActorDTO>();
-            CreateMap<ActorDTO, Actor>();
+            CreateMap<Actor, ActorDTO>()
+                .ForMember(
+                dest => dest.DateUpdated,
+                opt => opt.MapFrom(src => src.DateUpdated.ToString("o"))
+                );
+
+
+            CreateMap<ActorDTO, Actor>().ForMember(
+                dest => dest.DateUpdated,
+                opt => opt.MapFrom(src => Convert.ToDateTime(src.DateUpdated))
+                );
 
             CreateMap<Tool, ToolDTO>().ForMember(
                 dest => dest.DateCreated,

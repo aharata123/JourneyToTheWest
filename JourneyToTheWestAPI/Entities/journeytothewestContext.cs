@@ -44,6 +44,8 @@ namespace JourneyToTheWestAPI.Entities
                     .HasName("IX_Actor")
                     .IsUnique();
 
+                entity.Property(e => e.DateUpdated).HasColumnType("datetime");
+
                 entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.Email)
@@ -71,6 +73,10 @@ namespace JourneyToTheWestAPI.Entities
                 entity.Property(e => e.Role).HasColumnName("role");
 
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.Property(e => e.UpdatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Username)
                     .IsRequired()

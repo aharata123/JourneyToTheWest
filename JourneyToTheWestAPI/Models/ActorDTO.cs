@@ -26,6 +26,10 @@ namespace JourneyToTheWestAPI.Models
         public String username { get; set; }
         [JsonProperty("role")]
         public int role { get; set; }
+        [JsonProperty("DateUpdated")]
+        public String DateUpdated { get; set; }
+        [JsonProperty("UpdatedBy")]
+        public String UpdatedBy { get; set; }
 
     }
 }

@@ -47,6 +47,9 @@ namespace JourneyToTheWestAPI.DAOs
             Actor actor = _mapper.Map<Actor>(dto);
             actor.Status = (int)Status.ACTIVE;
             actor.Role = (int)Constants.ACTOR;
+            actor.DateUpdated = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
+
+
             _context.Actors.Add(actor);
             if (_context.SaveChanges() == (int)Constants.SUCCESS)
             {
@@ -68,6 +71,7 @@ namespace JourneyToTheWestAPI.DAOs
                 actor = _mapper.Map<Actor>(dto);
                 actor.Status = (int)Status.ACTIVE;
                 actor.Role = (int)Constants.ACTOR;
+                actor.DateUpdated = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
                 _context.Entry(actor).State = EntityState.Modified;
                 if (_context.SaveChanges() == (int)Constants.SUCCESS)
                 {

@@ -20,6 +20,8 @@ namespace JourneyToTheWestAPI.Entities
         public string Username { get; set; }
         public int Status { get; set; }
         public int Role { get; set; }
+        public DateTime DateUpdated { get; set; }
+        public string UpdatedBy { get; set; }
 
         public virtual ICollection<RolesInScenario> RolesInScenarios { get; set; }
     }
