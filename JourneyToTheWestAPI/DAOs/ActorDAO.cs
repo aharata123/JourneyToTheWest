@@ -24,7 +24,7 @@ namespace JourneyToTheWestAPI.DAOs
         public List<ActorDTO> getList()
         {
             var actors = (from actor in _context.Actors
-                          where actor.Status == (int)Status.ACTIVE
+                          where actor.Status == (int)Status.ACTIVE && actor.Role == (int)Constants.ACTOR
                           select
                               _mapper.Map<ActorDTO>(actor)
                                            ).ToList();
