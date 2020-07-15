@@ -68,6 +68,16 @@ namespace JourneyToTheWestAPI.Ultils
                 );
 
             CreateMap<RoleScenarioDTO, RolesInScenario>();
+
+            CreateMap<ToolsInScenario, ToolInScenarioDTO>()
+                .ForMember(
+                dest => dest.Name,
+                opt => opt.MapFrom(src => src.IdToolNavigation.Name)
+                )
+                .ForMember(
+                dest => dest.Image,
+                opt => opt.MapFrom(src => src.IdToolNavigation.Image)
+                );
                 
         }
     }

@@ -86,5 +86,23 @@ namespace JourneyToTheWestAPI.DAOs
 
             return isDelete;
         }
+
+
+        public List<ToolInScenarioDTO> GetAllTool(int IdScenario)
+        {
+            var allTool = (from data in _context.ToolsInScenarios.Include(s => s.IdToolNavigation)
+                           where data.IdScenario == IdScenario
+                           select
+                               _mapper.Map<ToolInScenarioDTO>(data)
+                               ).ToList();
+            if (allTool.Count == 0)
+            {
+                allTool = null;
+            }
+
+            return allTool;
+        }
+
+
     }
 }

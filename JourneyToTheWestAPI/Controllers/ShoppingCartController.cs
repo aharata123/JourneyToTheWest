@@ -59,6 +59,16 @@ namespace JourneyToTheWestAPI.Controllers
             else return StatusCode(204);
         }
 
+        [HttpGet("tool/{id}")]
+        public ActionResult GetTool(int id)
+        {
+            var data = dao.GetAllTool(id);
+            if (data == null)
+            {
+                return StatusCode(404);
+            }
+            else return StatusCode(200, data);
+        }
 
 
 
