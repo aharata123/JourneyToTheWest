@@ -59,6 +59,9 @@ namespace JourneyToTheWestAPI.Controllers
             else return StatusCode(204);
         }
 
+
+        //////// Shopping Cart Tool
+
         [HttpGet("tool/{id}")]
         public ActionResult GetTool(int id)
         {
@@ -70,6 +73,31 @@ namespace JourneyToTheWestAPI.Controllers
             else return StatusCode(200, data);
         }
 
+        [HttpPost("tools")]
+        public ActionResult CreateTool([FromBody] List<ToolScenarioDTO> list)
+        {
+
+            bool isAdd = dao.addToolToScenario(list);
+
+            if (!isAdd)
+            {
+                return StatusCode(400);
+            }
+            else return StatusCode(204);
+        }
+
+        [HttpDelete("tools")]
+        public ActionResult DeleteTool([FromBody] List<ToolScenarioDTO> list)
+        {
+
+            bool isDelete = dao.deleteToolToScenario(list);
+
+            if (!isDelete)
+            {
+                return StatusCode(400);
+            }
+            else return StatusCode(204);
+        }
 
 
     }

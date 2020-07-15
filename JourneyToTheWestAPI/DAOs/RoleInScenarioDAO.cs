@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace JourneyToTheWestAPI.DAOs
@@ -87,7 +88,7 @@ namespace JourneyToTheWestAPI.DAOs
             return isDelete;
         }
 
-
+        // For tool
         public List<ToolInScenarioDTO> GetAllTool(int IdScenario)
         {
             var allTool = (from data in _context.ToolsInScenarios.Include(s => s.IdToolNavigation)
@@ -102,7 +103,82 @@ namespace JourneyToTheWestAPI.DAOs
 
             return allTool;
         }
+        public bool addToolToScenario(List<ToolScenarioDTO> dto)
+        {
+            bool isAdd = false;
 
+            foreach (var item in dto)
+            {
+                ToolsInScenario tools = _mapper.Map<ToolsInScenario>(item);
+
+                ToolsInScenario toolInDB = _context.ToolsInScenarios.Find(item.IdScenario, item.IdTool);
+
+                Tool toolInWarehouse = _context.Tools.Find(item.IdTool);
+
+                if (toolInDB != null) {
+                    _context.Entry(toolInDB).State = EntityState.Detached;
+                    toolInDB.Quantity = toolInDB.Quantity + tools.Quantity;
+                    if(toolInDB.Quantity > toolInWarehouse.Quantity)
+                    {
+                        return false;
+                    } else
+                    {
+                        _context.Entry(toolInDB).State = EntityState.Modified;
+                    }
+
+                } else
+                {
+                    try
+                    {
+                        if(toolInWarehouse.Quantity < tools.Quantity)
+                        {
+                            return false;
+                        } else
+                        {
+                            _context.ToolsInScenarios.Add(tools);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        // check trùng key
+                        return false;
+                    }
+                }
+            }
+
+            if (_context.SaveChanges() == dto.Count)
+            {
+                isAdd = true;
+            }
+
+            return isAdd;
+        }
+        public bool deleteToolToScenario(List<ToolScenarioDTO> dto)
+        {
+            bool isDelete = false;
+
+            foreach (var item in dto)
+            {
+                ToolsInScenario tools = _mapper.Map<ToolsInScenario>(item);
+                try
+                {
+                    _context.ToolsInScenarios.Remove(tools);
+                }
+                catch (Exception e)
+                {
+                    // check trùng key
+                    return false;
+                }
+
+            }
+
+            if (_context.SaveChanges() == dto.Count)
+            {
+                isDelete = true;
+            }
+
+            return isDelete;
+        }
 
     }
 }

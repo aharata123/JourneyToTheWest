@@ -48,6 +48,8 @@ namespace JourneyToTheWestAPI.Ultils
                 opt => opt.MapFrom(src => Convert.ToDateTime(src.DateUpdated))
                 );
 
+
+            ////
             CreateMap<Tool, ToolDTO>().ForMember(
                 dest => dest.DateCreated,
                 opt => opt.MapFrom(src => src.DateCreated.ToString("o"))
@@ -67,7 +69,10 @@ namespace JourneyToTheWestAPI.Ultils
                 opt => opt.MapFrom(src => src.IdActorNavigation.Image)
                 );
 
+
             CreateMap<RoleScenarioDTO, RolesInScenario>();
+
+              ////
 
             CreateMap<ToolsInScenario, ToolInScenarioDTO>()
                 .ForMember(
@@ -78,7 +83,9 @@ namespace JourneyToTheWestAPI.Ultils
                 dest => dest.Image,
                 opt => opt.MapFrom(src => src.IdToolNavigation.Image)
                 );
-                
+
+            CreateMap<ToolScenarioDTO, ToolsInScenario>();
+
         }
     }
 
