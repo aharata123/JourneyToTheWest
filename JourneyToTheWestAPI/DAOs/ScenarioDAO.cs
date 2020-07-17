@@ -86,5 +86,27 @@ namespace JourneyToTheWestAPI.DAOs
             }
             return isDeleted;
         }
+
+        public List<ScenarioDTO> getListHistory(int idActor)
+        {
+            var listScenario = (from d in _context.RolesInScenarios
+                                where d.IdActor == idActor &&
+d.IdScenarioNavigation.EndDate < TimeZoneInfo
+.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"))
+                                select _mapper.Map<ScenarioDTO>(d.IdScenarioNavigation)).ToList();
+            return listScenario;
+        }
+
+        public List<ScenarioDTO> getListSchedule(int idActor)
+        {
+            var listScenario = (from d in _context.RolesInScenarios
+                                where d.IdActor == idActor &&
+d.IdScenarioNavigation.EndDate > TimeZoneInfo
+.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"))
+                                select _mapper.Map<ScenarioDTO>(d.IdScenarioNavigation)).ToList();
+            return listScenario;
+        }
+
+
     }
 }

@@ -30,6 +30,23 @@ namespace JourneyToTheWestAPI.Controllers
             return dao.getList();
         }
 
+        [HttpGet("history/{idActor}")]
+        public IEnumerable<ScenarioDTO> GetHistory(int idActor)
+        {
+                
+            return dao.getListHistory(idActor);
+        }
+
+        [HttpGet("schedule/{idActor}")]
+        public IEnumerable<ScenarioDTO> GetSchedule(int idActor)
+        {
+
+            return dao.getListSchedule(idActor);
+        }
+
+
+
+
         // GET api/<ScenarioController>/5
         [HttpGet("{id}")]
         public string Get(int id)
